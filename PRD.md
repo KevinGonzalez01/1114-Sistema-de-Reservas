@@ -47,11 +47,5 @@ La reserva queda confirmada, pero con deuda registrada.
 Caso 3: Pago de reserva: El cliente realiza un abono de $60.000.
 El sistema actualiza el saldo pendiente a $100.000.
 6. Datos Principales
-DATO                    TIPO                     EJEMPLO
-Producto                Texto                    Arroz blanco
-Cantidad                Número                   5
-Precio unitario         Número                   2.500
-Cliente                 Texto                    Juan López
-Tipo de pago            Opciones                 CONTADO, PARCIAL, FIADO
 
 
