@@ -5,7 +5,6 @@ Proyecto: [NOMBRE DEL PROYECTO] Equipo: [NOMBRES] Fecha: [FECHA] Grupo: 1114
 [ESCRIBAN AQUÍ: ¿Cuál es el problema? ¿Quién lo tiene? ¿Por qué es importante?
 Mínimo 5 líneas.]
 2. Roles y Responsabilidades
-
 [CREAR TARJETAS para cada rol. Mínimo 2 roles. Máximo 4.]
 3. Requisitos Funcionales
 [LISTA de 5-7 cosas que EL SISTEMA DEBE HACER. Empieza cada una con &quot;El
