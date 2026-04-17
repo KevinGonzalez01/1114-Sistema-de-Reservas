@@ -92,3 +92,15 @@ El sistema actualiza el saldo pendiente a $100.000.
 ---
 7. Criterios de Éxito
 
+- Rapidez: La web debe cargar en menos de 2 segundos para no perder clientes.
+- Claridad: Que el botón de "Reservar ahora" sea fácil de ver y encontrar.
+- Móvil primero: Que se pueda reservar desde un celular sin ningún error.
+- Confianza: Mostrar fotos reales y opiniones de otros huéspedes.
+- Simplicidad: Pedir solo los datos básicos para finalizar la reserva rápido.
+
+---
+8. Limitaciones
+- La experiencia real: La web puede ser perfecta, pero no controla si el hotel está limpio o si el personal es amable.
+- Problemas de conexión: Si el usuario tiene mal internet o su banco rechaza la tarjeta, la página no puede hacer nada.
+- Factores climáticos o sociales: Desastres naturales, huelgas o cancelaciones de vuelos que hagan que la gente no llegue al hotel.
+
