@@ -2,6 +2,7 @@
 Proyecto: Sistema de Reservas
 ---
 Equipo: 
+---
 Lider: Kevin Gonzalez
 Colaborador 1: Alejandro Lopez
 Colaborador 2: David Cuero
