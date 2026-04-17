@@ -1,2 +1,2 @@
-# Falta la edcicon del README.md
+# Falta la edicion del README.md
 # Agregar en una lista la cuenta del repo de los integrantes del proyecto
