@@ -81,3 +81,14 @@ El sistema actualiza el saldo pendiente a $100.000.
 6. Datos Principales
 
 
+| DATO | TIPO | EJEMPLO |
+| :--- | :---: | ---: |
+| Habitacion | Texto | Habitacion VIP |
+| Cantidad | Número | 2 |
+| Precio | Numero | $ 500.000 |
+| Cliente | Texto | David Esteba |
+| Tipo de pago | Opciones | Efectivo o Tarjeta |
+
+---
+7. Criterios de Éxito
+
