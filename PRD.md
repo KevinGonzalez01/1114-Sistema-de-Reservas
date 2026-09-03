@@ -3,8 +3,7 @@ Proyecto: Sistema de Reservas
 ---
 Equipo: 
 - Lider: Kevin Gonzalez
-- Colaborador 1: Alejandro Lopez
-- Colaborador 2: David Cuero
+- Colaborador: David Cuero
 - Fecha: 16/04/2026 
 - Grupo: 1114
 ---
@@ -12,7 +11,7 @@ Equipo:
 
 ¿Cuál es el problema?
 
-Un pequeño hotel necesita un sistema para controlar las reservas.
+Un hotel 5 estrellas necesita un sistema para controlar las reservas de los clientes
 
 ¿Quién lo tiene?
 
