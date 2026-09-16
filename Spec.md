@@ -54,8 +54,8 @@ Un sistema para que las personas puedan reservar una habitación de hotel desde 
 
 - HTML
 - CSS
-- JS
-- SQLITE
+- Python
+- SQLite
 
 ## 9. Ideas para mejorar después
 - Agregar login de usuario.
