@@ -52,8 +52,10 @@ Un sistema para que las personas puedan reservar una habitación de hotel desde 
 
 ## 8. Con qué lo voy a construir
 
-- HTML, CSS y JavaScript para la parte visual.
-- (Opcional, si el curso lo pide) una base de datos simple o un archivo para guardar las reservas mientras se aprende.
+- HTML
+- CSS
+- -JS
+- SQLITE
 
 ## 9. Ideas para mejorar después
 - Agregar login de usuario.
