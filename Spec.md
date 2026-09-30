@@ -56,6 +56,8 @@ Un sistema para que las personas puedan reservar una habitación de hotel desde 
 - CSS
 - JavaScript
 - SQLite
+- Python
+- Flask
 
 ## 9. Ideas para mejorar después
 - Agregar login de usuario.
