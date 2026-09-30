@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block titulo %}Panel del dueño - Hotel Bacatá{% endblock %}
+
+{% block contenido %}
+<h2>Habitaciones y disponibilidad</h2>
+
+<form method="get" class="formulario en-linea">
+  <div>
+    <label for="entrada">Desde</label>
+    <input type="date" id="entrada" name="entrada" value="{{ entrada }}" required>
+  </div>
+  <div>
+    <label for="salida">Hasta</label>
+    <input type="date" id="salida" name="salida" value="{{ salida }}" required>
+  </div>
+  <button type="submit">Consultar</button>
+</form>
+
+<p>Disponibilidad del <strong>{{ entrada }}</strong> al <strong>{{ salida }}</strong>:</p>
+
+<table>
+  <tr>
+    <th>Habitación</th>
+    <th>Tipo</th>
+    <th>Capacidad</th>
+    <th>Precio por noche</th>
+    <th>Disponibilidad</th>
+  </tr>
+  {% for e in estado %}
+  <tr>
+    <td>{{ e.hab['numero'] }}</td>
+    <td>{{ e.hab['tipo'] }}</td>
+    <td>{{ e.hab['capacidad'] }} personas</td>
+    <td>{{ e.hab['precio'] | cop }}</td>
+    <td>
+      {% if e.libre %}
+        <span class="libre">Disponible</span>
+      {% else %}
+        <span class="ocupada">Reservada</span>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h2>Fechas reservadas</h2>
+{% if reservas %}
+  <table>
+    <tr>
+      <th>Habitación</th>
+      <th>Tipo</th>
+      <th>Cliente</th>
+      <th>Correo</th>
+      <th>Entrada</th>
+      <th>Salida</th>
+      <th>Estado</th>
+    </tr>
+    {% for r in reservas %}
+    <tr class="{{ 'cancelada' if r['estado'] == 'cancelada' }}">
+      <td>{{ r['numero'] }}</td>
+      <td>{{ r['tipo'] }}</td>
+      <td>{{ r['cliente'] }}</td>
+      <td>{{ r['email'] }}</td>
+      <td>{{ r['entrada'] }}</td>
+      <td>{{ r['salida'] }}</td>
+      <td>{{ r['estado'] | capitalize }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>Todavía no hay reservas.</p>
+{% endif %}
+{% endblock %}

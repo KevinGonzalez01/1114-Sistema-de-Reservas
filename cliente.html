@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block titulo %}Reservar - Hotel Bacatá{% endblock %}
+
+{% block contenido %}
+<h2>Reservar una habitación</h2>
+
+<form method="get" class="formulario en-linea">
+  <div>
+    <label for="entrada">Entrada</label>
+    <input type="date" id="entrada" name="entrada" min="{{ hoy }}" value="{{ entrada }}" required>
+  </div>
+  <div>
+    <label for="salida">Salida</label>
+    <input type="date" id="salida" name="salida" min="{{ hoy }}" value="{{ salida }}" required>
+  </div>
+  <button type="submit">Buscar habitaciones</button>
+</form>
+
+{% if libres is not none %}
+  <h3>Habitaciones disponibles ({{ noches }} {{ 'noche' if noches == 1 else 'noches' }})</h3>
+  {% if libres %}
+    <table>
+      <tr>
+        <th>Habitación</th>
+        <th>Tipo</th>
+        <th>Capacidad</th>
+        <th>Precio por noche</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+      {% for h in libres %}
+      <tr>
+        <td>{{ h['numero'] }}</td>
+        <td>{{ h['tipo'] }}</td>
+        <td>{{ h['capacidad'] }} personas</td>
+        <td>{{ h['precio'] | cop }}</td>
+        <td>{{ (h['precio'] * noches) | cop }}</td>
+        <td>
+          <form method="post" action="{{ url_for('reservar') }}">
+            <input type="hidden" name="habitacion_id" value="{{ h['id'] }}">
+            <input type="hidden" name="entrada" value="{{ entrada }}">
+            <input type="hidden" name="salida" value="{{ salida }}">
+            <button type="submit">Reservar</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No hay habitaciones disponibles en esas fechas. Prueba con otras.</p>
+  {% endif %}
+{% endif %}
+
+<h2>Mis reservas</h2>
+{% if reservas %}
+  <table>
+    <tr>
+      <th>Habitación</th>
+      <th>Tipo</th>
+      <th>Entrada</th>
+      <th>Salida</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
+    {% for r in reservas %}
+    <tr class="{{ 'cancelada' if r['estado'] == 'cancelada' }}">
+      <td>{{ r['numero'] }}</td>
+      <td>{{ r['tipo'] }}</td>
+      <td>{{ r['entrada'] }}</td>
+      <td>{{ r['salida'] }}</td>
+      <td>{{ r['estado'] | capitalize }}</td>
+      <td>
+        {% if r['estado'] == 'activa' %}
+        <form method="post" action="{{ url_for('cancelar', reserva_id=r['id']) }}"
+              onsubmit="return confirm('¿Seguro que quieres cancelar esta reserva?');">
+          <button type="submit" class="secundario">Cancelar</button>
+        </form>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>Todavía no tienes reservas.</p>
+{% endif %}
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}
