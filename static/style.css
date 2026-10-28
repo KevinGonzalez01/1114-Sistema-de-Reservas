@@ -1,131 +1,223 @@
-```css
-/* Estilos del sistema de reservas - Hotel Bacatá */
-
+/* Estilos del sistema de reservas - Hotel Bacatá (negro + dorado) */
+ 
+:root {
+  --negro: #0b0b0b;
+  --gris: #1a1a1a;
+  --dorado: #aa7c11;
+  --dorado-claro: #d9a832;
+  --crema: #faf7f0;
+  --borde: #e6dfcc;
+  --texto: #2b2b2b;
+  --serif: Georgia, "Times New Roman", serif;
+}
+ 
 * {
   box-sizing: border-box;
 }
-
+ 
+html {
+  scroll-behavior: smooth;
+}
+ 
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #ffffff;
-  color: #333333;
-  line-height: 1.5;
+  background: var(--crema);
+  color: var(--texto);
+  line-height: 1.6;
 }
-
+ 
+/* Encabezado */
+ 
 header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  padding: 15px 30px;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 16px 40px;
+  background: var(--negro);
+  border-bottom: 2px solid var(--dorado);
 }
-
+ 
 header h1 {
   margin: 0;
-  font-size: 24px;
-  color: #1f2937;
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
-
+ 
+header h1 a {
+  color: var(--dorado-claro);
+}
+ 
+nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+ 
 nav a {
-  margin-left: 15px;
+  color: #f1e6c8;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
-
+ 
+nav a:hover {
+  color: var(--dorado-claro);
+}
+ 
+nav span {
+  color: var(--dorado-claro);
+  font-size: 14px;
+}
+ 
 a {
-  color: #2563eb;
+  color: var(--dorado);
   text-decoration: none;
 }
-
+ 
 a:hover {
-  color: #1d4ed8;
+  color: var(--dorado-claro);
 }
-
+ 
 main {
-  max-width: 950px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
 }
-
-h2 {
-  color: #1f2937;
-  margin-top: 35px;
+ 
+h2, h3 {
+  font-family: var(--serif);
+  color: var(--negro);
+  font-weight: normal;
 }
-
+ 
+h2 {
+  margin-top: 40px;
+  font-size: 28px;
+}
+ 
+h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  margin-top: 8px;
+  background: var(--dorado);
+}
+ 
 /* Mensajes */
-
+ 
 .mensaje {
-  background: #f8fafc;
-  border-left: 4px solid #2563eb;
+  background: #fff8e6;
+  border-left: 4px solid var(--dorado);
   padding: 10px 15px;
   border-radius: 4px;
 }
-
+ 
 /* Formularios */
-
+ 
 .formulario {
   max-width: 380px;
   margin: 15px 0;
 }
-
+ 
 .formulario label {
   display: block;
   margin: 12px 0 4px;
-  color: #374151;
-  font-weight: 500;
+  font-weight: bold;
+  font-size: 14px;
 }
-
+ 
 input {
   width: 100%;
   padding: 10px;
   background: #ffffff;
-  color: #333333;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+  color: var(--texto);
+  border: 1px solid #d6cdb4;
+  border-radius: 4px;
   font-size: 15px;
   outline: none;
 }
-
+ 
 input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: var(--dorado);
+  box-shadow: 0 0 0 3px rgba(170, 124, 17, 0.15);
 }
-
+ 
 /* Botones */
-
+ 
 button {
   margin-top: 15px;
-  padding: 10px 18px;
-  background: #2563eb;
+  padding: 11px 22px;
+  background: var(--dorado);
   color: #ffffff;
   border: none;
-  border-radius: 6px;
-  font-size: 15px;
+  border-radius: 4px;
+  font-size: 14px;
   font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   cursor: pointer;
   transition: 0.2s;
 }
-
+ 
 button:hover {
-  background: #1d4ed8;
+  background: var(--negro);
 }
-
+ 
 button.secundario {
   margin-top: 0;
-  background: #ffffff;
-  color: #dc2626;
-  border: 1px solid #dc2626;
+  background: transparent;
+  color: #b91c1c;
+  border: 1px solid #b91c1c;
 }
-
+ 
 button.secundario:hover {
   background: #fef2f2;
 }
-
+ 
+.boton {
+  display: inline-block;
+  padding: 12px 26px;
+  background: var(--dorado);
+  color: #ffffff;
+  border: 1px solid var(--dorado);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.2s;
+}
+ 
+.boton:hover {
+  background: var(--dorado-claro);
+  border-color: var(--dorado-claro);
+  color: #ffffff;
+}
+ 
+.boton.claro {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+ 
+.boton.claro:hover {
+  background: #ffffff;
+  color: var(--negro);
+}
+ 
 /* Elementos en línea */
-
+ 
 .en-linea {
   display: flex;
   flex-wrap: wrap;
@@ -133,75 +225,296 @@ button.secundario:hover {
   align-items: flex-end;
   max-width: none;
 }
-
+ 
 .en-linea div {
   width: 170px;
 }
-
+ 
 .en-linea button {
   margin-top: 0;
 }
-
+ 
 /* Tablas */
-
+ 
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 15px 0;
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  overflow: hidden;
+  border: 1px solid var(--borde);
 }
-
+ 
 th,
 td {
   padding: 11px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--borde);
   text-align: left;
 }
-
+ 
 th {
-  background: #f8fafc;
-  color: #1f2937;
-  font-weight: bold;
+  background: var(--negro);
+  color: var(--dorado-claro);
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 13px;
 }
-
+ 
 td form {
   margin: 0;
 }
-
+ 
 td button {
   margin-top: 0;
-  padding: 6px 12px;
+  padding: 7px 14px;
 }
-
+ 
 /* Reserva cancelada */
-
+ 
 .cancelada td {
   color: #9ca3af;
   text-decoration: line-through;
 }
-
+ 
 /* Estados */
-
+ 
 .libre {
-  color: #16a34a;
+  color: #15803d;
   font-weight: bold;
 }
-
+ 
 .ocupada {
-  color: #dc2626;
+  color: #b91c1c;
   font-weight: bold;
 }
-
+ 
+/* Página de inicio: portada */
+ 
+.portada {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 520px;
+  padding: 40px 20px;
+  background-color: var(--negro);
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  color: #ffffff;
+}
+ 
+.portada::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+ 
+.portada > div {
+  position: relative;
+  max-width: 640px;
+}
+ 
+.portada .sobretitulo {
+  margin: 0 0 10px;
+  color: var(--dorado-claro);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+ 
+.portada h2 {
+  margin: 0 0 15px;
+  color: #ffffff;
+  font-size: 46px;
+}
+ 
+.portada h2::after {
+  margin: 14px auto 0;
+}
+ 
+.portada p {
+  margin: 0 auto 28px;
+  font-size: 18px;
+}
+ 
+.acciones {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+ 
+/* Secciones de la página de inicio */
+ 
+.pagina-inicio main {
+  max-width: none;
+  padding: 0;
+}
+ 
+.seccion {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 20px 40px;
+}
+ 
+.seccion.oscura {
+  max-width: none;
+  background: var(--gris);
+  color: #e5e5e5;
+  padding: 20px 20px 50px;
+}
+ 
+.seccion.oscura .interior {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+ 
+.seccion.oscura h2,
+.seccion.oscura h3 {
+  color: var(--dorado-claro);
+}
+ 
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 22px;
+  margin-top: 20px;
+}
+ 
+.tarjeta {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  transition: 0.25s;
+}
+ 
+.tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+ 
+.tarjeta img {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+ 
+.tarjeta .contenido {
+  padding: 18px 20px 22px;
+}
+ 
+.tarjeta h3 {
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+ 
+.tarjeta p {
+  margin: 0 0 6px;
+}
+ 
+.tarjeta .precio {
+  margin-top: 12px;
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--dorado);
+}
+ 
+.tarjeta .precio span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #777777;
+}
+ 
+/* Contacto y ubicación */
+ 
+.contacto {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 30px;
+  align-items: start;
+  margin-top: 20px;
+}
+ 
+.contacto ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ 
+.contacto li {
+  padding: 14px 0;
+  border-bottom: 1px solid #333333;
+}
+ 
+.contacto li strong {
+  display: block;
+  color: var(--dorado-claro);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+ 
+.contacto a {
+  color: #f1e6c8;
+}
+ 
+.contacto a:hover {
+  color: var(--dorado-claro);
+}
+ 
+.mapa {
+  width: 100%;
+  height: 340px;
+  border: 2px solid var(--dorado);
+  border-radius: 6px;
+}
+ 
+/* Pie de página */
+ 
+footer {
+  padding: 25px 20px;
+  background: var(--negro);
+  border-top: 2px solid var(--dorado);
+  color: #b8b8b8;
+  text-align: center;
+  font-size: 14px;
+}
+ 
+footer strong {
+  color: var(--dorado-claro);
+  font-family: var(--serif);
+  font-weight: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+ 
 /* Responsive */
-
-@media (max-width: 700px) {
+ 
+@media (max-width: 760px) {
+  header {
+    padding: 14px 20px;
+  }
+ 
+  .portada h2 {
+    font-size: 32px;
+  }
+ 
+  .contacto {
+    grid-template-columns: 1fr;
+  }
+ 
   table {
     display: block;
     overflow-x: auto;
   }
 }
-```
-
+ 
+.pagina-inicio .mensaje {
+  margin: 0;
+  border-radius: 0;
+}

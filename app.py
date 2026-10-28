@@ -2,6 +2,7 @@ import os
 import sqlite3
 from datetime import date, datetime
 from functools import wraps
+from urllib.parse import quote_plus
 
 from flask import (Flask, flash, g, redirect, render_template, request,
                    session, url_for)
@@ -93,6 +94,37 @@ def formato_cop(valor):
     return "$" + f"{valor:,.0f}".replace(",", ".")
 
 
+# Datos de contacto y ubicación del hotel. CAMBIA ESTOS VALORES por los reales.
+HOTEL = {
+    "nombre": "Hotel Bacatá",
+    "direccion": "Calle 00 # 00-00",
+    "ciudad": "Bogotá, Colombia",
+    "telefono": "+57 300 000 0000",
+    "whatsapp": "573000000000",          # solo números, con indicativo del país
+    "correo": "contacto@bacata.com",
+    "horario": "Recepción abierta las 24 horas",
+}
+HOTEL["mapa"] = ("https://maps.google.com/maps?q="
+                 + quote_plus(f"{HOTEL['direccion']}, {HOTEL['ciudad']}")
+                 + "&output=embed")
+
+
+@app.context_processor
+def datos_del_hotel():
+    return {"hotel": HOTEL}
+
+
+@app.template_filter("foto")
+def foto(nombre):
+    """Devuelve la imagen static/img/<nombre>. Si subes una foto real (jpg, png o webp)
+    con el mismo nombre, se usa en lugar de la ilustración .svg."""
+    nombre = nombre.lower()
+    for ext in ("jpg", "jpeg", "png", "webp", "svg"):
+        if os.path.exists(os.path.join(app.static_folder, "img", f"{nombre}.{ext}")):
+            return url_for("static", filename=f"img/{nombre}.{ext}")
+    return ""
+
+
 def leer_fecha(texto):
     try:
         return datetime.strptime(texto, "%Y-%m-%d").date()
@@ -120,7 +152,7 @@ def login_requerido(rol):
                 return redirect(url_for("login"))
             if session.get("rol") != rol:
                 flash("No tienes permiso para entrar a esa página.")
-                return redirect(url_for("inicio"))
+                return redirect(url_for("panel"))
             return funcion(*args, **kwargs)
         return envoltura
     return decorador
@@ -131,6 +163,17 @@ def login_requerido(rol):
 # ---------------------------------------------------------------
 @app.route("/")
 def inicio():
+    """Página de inicio pública del hotel."""
+    tipos = get_db().execute(
+        """SELECT tipo, MIN(precio) AS desde, MAX(capacidad) AS capacidad
+           FROM habitaciones GROUP BY tipo ORDER BY desde"""
+    ).fetchall()
+    return render_template("inicio.html", tipos=tipos)
+
+
+@app.route("/panel")
+def panel():
+    """Lleva a cada usuario a su panel según su rol."""
     if session.get("rol") == "dueno":
         return redirect(url_for("panel_dueno"))
     if session.get("rol") == "cliente":
@@ -183,7 +226,7 @@ def login():
         session["usuario_id"] = usuario["id"]
         session["nombre"] = usuario["nombre"]
         session["rol"] = usuario["rol"]
-        return redirect(url_for("inicio"))
+        return redirect(url_for("panel"))
 
     return render_template("login.html")
 
@@ -314,3 +357,4 @@ init_db()
 
 if __name__ == "__main__":
     app.run(debug=True)
+ 

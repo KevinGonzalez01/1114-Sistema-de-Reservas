@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block titulo %}Hotel Bacatá - Bienvenido{% endblock %}
+{% block clase %}pagina-inicio{% endblock %}
+ 
+{% block contenido %}
+<section class="portada" style="background-image: url('{{ 'hero' | foto }}');">
+  <div>
+    <p class="sobretitulo">Bienvenido</p>
+    <h2>Una estadía a tu altura</h2>
+    <p>Descansa en el corazón de la ciudad. Elige tus fechas, escoge tu habitación
+       y reserva en pocos minutos.</p>
+    <div class="acciones">
+      {% if session.get('usuario_id') %}
+        <a class="boton" href="{{ url_for('panel') }}">Ir a mi panel</a>
+      {% else %}
+        <a class="boton" href="{{ url_for('registro') }}">Crear cuenta y reservar</a>
+        <a class="boton claro" href="{{ url_for('login') }}">Iniciar sesión</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+ 
+<section class="seccion" id="habitaciones">
+  <h2>Nuestras habitaciones</h2>
+  <div class="tarjetas">
+    {% for t in tipos %}
+    <article class="tarjeta">
+      <img src="{{ t['tipo'] | foto }}" alt="Habitación {{ t['tipo'] }}">
+      <div class="contenido">
+        <h3>{{ t['tipo'] }}</h3>
+        <p>Hasta {{ t['capacidad'] }} {{ 'persona' if t['capacidad'] == 1 else 'personas' }}</p>
+        <p class="precio">Desde {{ t['desde'] | cop }} <span>por noche</span></p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+ 
+<section class="seccion">
+  <h2>¿Por qué elegirnos?</h2>
+  <div class="tarjetas">
+    <article class="tarjeta"><div class="contenido">
+      <h3>Reserva fácil</h3>
+      <p>Consulta la disponibilidad por fechas y reserva en línea.</p>
+    </div></article>
+    <article class="tarjeta"><div class="contenido">
+      <h3>Precios claros</h3>
+      <p>Ves el valor por noche y el total de tu estadía antes de confirmar.</p>
+    </div></article>
+    <article class="tarjeta"><div class="contenido">
+      <h3>Tú tienes el control</h3>
+      <p>Revisa y cancela tus reservas cuando lo necesites desde tu cuenta.</p>
+    </div></article>
+  </div>
+</section>
+ 
+<section class="seccion oscura" id="contacto">
+  <div class="interior">
+    <h2>Contacto y ubicación</h2>
+    <div class="contacto">
+      <ul>
+        <li><strong>Dirección</strong>{{ hotel.direccion }}, {{ hotel.ciudad }}</li>
+        <li><strong>Teléfono</strong><a href="tel:{{ hotel.telefono | replace(' ', '') }}">{{ hotel.telefono }}</a></li>
+        <li><strong>WhatsApp</strong><a href="https://wa.me/{{ hotel.whatsapp }}" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></li>
+        <li><strong>Correo</strong><a href="mailto:{{ hotel.correo }}">{{ hotel.correo }}</a></li>
+        <li><strong>Horario</strong>{{ hotel.horario }}</li>
+      </ul>
+      <iframe class="mapa" src="{{ hotel.mapa }}" title="Ubicación del hotel"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+{% endblock %}

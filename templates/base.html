@@ -6,11 +6,15 @@
   <title>{% block titulo %}Hotel Bacatá{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="{% block clase %}{% endblock %}">
   <header>
-    <h1>Hotel Bacatá</h1>
+    <h1><a href="{{ url_for('inicio') }}">{{ hotel.nombre }}</a></h1>
     <nav>
+      <a href="{{ url_for('inicio') }}">Inicio</a>
+      <a href="{{ url_for('inicio') }}#habitaciones">Habitaciones</a>
+      <a href="{{ url_for('inicio') }}#contacto">Contacto</a>
       {% if session.get('usuario_id') %}
+        <a href="{{ url_for('panel') }}">Mi panel</a>
         <span>Hola, {{ session['nombre'] }}</span>
         <a href="{{ url_for('logout') }}">Cerrar sesión</a>
       {% else %}
@@ -19,15 +23,21 @@
       {% endif %}
     </nav>
   </header>
-
+ 
   <main>
     {% with mensajes = get_flashed_messages() %}
       {% for m in mensajes %}
         <p class="mensaje">{{ m }}</p>
       {% endfor %}
     {% endwith %}
-
+ 
     {% block contenido %}{% endblock %}
   </main>
+ 
+  <footer>
+    <p><strong>{{ hotel.nombre }}</strong></p>
+    <p>{{ hotel.direccion }}, {{ hotel.ciudad }} · {{ hotel.telefono }} · {{ hotel.correo }}</p>
+  </footer>
 </body>
 </html>
+ 
